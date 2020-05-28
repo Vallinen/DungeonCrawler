@@ -1,4 +1,4 @@
-class Dungeon(var active: Boolean = false) {
+class Dungeon(var activeD: Boolean = false) {
 
     fun action() {
 
@@ -8,11 +8,10 @@ class Dungeon(var active: Boolean = false) {
     }
 
     fun isActive(): Boolean {
-        return active
+        return activeD
     }
 
-    fun enterD() {
-        active = true
-
+    fun flipper() {
+        activeD = !activeD
     }
 }

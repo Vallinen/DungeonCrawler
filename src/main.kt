@@ -4,6 +4,8 @@ fun main() { // Main menu
 
     val n = Number(0)
 
+    val startGame = GameEngine()
+
     while (true) { //sample menu loop
         print("Enter text: ")
         val stringInput = readLine()
@@ -16,12 +18,12 @@ fun main() { // Main menu
             n.add()
         }
         if (stringInput == "start") {
-            startgame()
+            startGame.runGame()
         }
     }
 }
 
-class Number(var number: Int) { // sample class
+class Number(var number: Int) { // sample class, serves no real purpose
     fun add() {
         this.number += 1
         println(this.number)
@@ -29,9 +31,9 @@ class Number(var number: Int) { // sample class
 
 }
 
-// All kod under denna raden 'borde' läggas i en separat class, då det innehåller spellogik?
+// All kod under denna raden 'borde' läggas i en separat class, då det innehåller spellogik
 
-fun startgame() {  // starts the game, by default with Town as TRUE
+/*fun startgame() {  // starts the game, by default with Town as TRUE
     val town = Town()
     val dungeon = Dungeon()
 
@@ -47,3 +49,4 @@ fun startgame() {  // starts the game, by default with Town as TRUE
     }
 }
 
+*/

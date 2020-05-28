@@ -1,18 +1,18 @@
 import kotlin.system.exitProcess
 
-class Town {
+class Town(var activeT: Boolean = true) {
 
-    var active: Boolean = true
+    var dungeon = Dungeon()
 
-    var dungeon
+    var gameEngine : GameEngine ?= null
 
-    val quest = Quests()
+    var quest = Quests()
 
     fun action() {
 
         if (quest.isNotActive()) println("Greetings adventurer, I have a quest for you! Do you accept it?")
 
-        while (active) {
+        while (activeT) {
 
             val stringInput: String? = readLine()  // Read input
 
@@ -30,7 +30,7 @@ class Town {
             if (stringInput == "leave") {
                 println("You leave town and head towards the dungeon.")
 
-                leaveT()
+                gameEngine?.travel()
 
             } // TODO Create a Flip function for both Dungeon and Town active
 
@@ -45,12 +45,11 @@ class Town {
     }
 
     fun isActive(): Boolean {
-        return active
+        return activeT
     }
 
-    fun leaveT() {
-        active = false
-        dungeon.enterD()
-        // This does not work TODO MAKE IT WORK
+    fun flipper() {
+        activeT = !activeT
+
     }
 }
