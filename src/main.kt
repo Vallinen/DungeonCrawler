@@ -17,7 +17,7 @@ fun main() { // Main menu
         if (stringInput == "plus") {
             n.add()
         }
-        if (stringInput == "start") {
+        if (stringInput == "start") { // redirects to class game engine
             startGame.runGame()
         }
     }

@@ -20,7 +20,7 @@ class GameEngine {
         }
     }
 
-    fun travel() {
+    fun travel() { //function that travels from town to dungeon and vice versa
         town.flipper()
         dungeon.flipper()
     }
