@@ -1,7 +1,7 @@
 class Quests {
 
 
-    var active: Boolean = false
+    var activeQ: Boolean = false
 
     var complete: Boolean = false
 
@@ -15,10 +15,15 @@ class Quests {
 
 
     fun isActive(): Boolean {
-        return active
+        return activeQ
     }
 
     fun isNotActive(): Boolean {
-        return !active
+        return !activeQ
+    }
+
+    fun flipper() {
+        activeQ = !activeQ
+
     }
 }

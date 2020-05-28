@@ -25,6 +25,7 @@ class Town(var activeT: Boolean = true) {
             }
             if (quest.isNotActive() && (stringInput == "yes")) {
                 println("Good, then I need you to get to the dungeon and find my fathers old sword.")
+                quest.flipper()
             } // TODO Set quest status to active, also remove this option when quest is active
 
             if (stringInput == "leave") {

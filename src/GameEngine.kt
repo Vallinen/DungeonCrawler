@@ -4,7 +4,6 @@ class GameEngine {
     val dungeon = Dungeon()
 
 
-
     fun runGame() {  // starts the game, by default with Town as TRUE
         town.gameEngine = this
 
@@ -21,7 +20,7 @@ class GameEngine {
         }
     }
 
-    fun travel(){
+    fun travel() {
         town.flipper()
         dungeon.flipper()
     }
