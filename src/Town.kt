@@ -4,9 +4,20 @@ class Town(var activeT: Boolean = true) {
 
     var dungeon = Dungeon()
 
-    var gameEngine : GameEngine ?= null
+    var gameEngine: GameEngine? = null
 
     var quest = Quests()
+
+    fun actionC(): ActionContainer {
+        val container = ActionContainer()
+        container.addAction("test", this::printStuff)
+        return container
+
+    }
+
+    fun printStuff() {
+        println("HELLO M8 THIS IS A TOWN TEST")
+    }
 
     fun action() {
 
