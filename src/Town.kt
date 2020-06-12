@@ -8,9 +8,12 @@ class Town(var activeT: Boolean = true) {
 
     var quest = Quests()
 
+
     fun actionC(): ActionContainer {
         val container = ActionContainer()
-        container.addAction("test", this::printStuff)
+        //container.addAction("travel", gameEngine.travel())
+
+        container.addAction("test2", this::printStuff)
         return container
 
     }
@@ -19,7 +22,7 @@ class Town(var activeT: Boolean = true) {
         println("HELLO M8 THIS IS A TOWN TEST")
     }
 
-    fun action() {
+    /*fun action() {
 
         if (quest.isNotActive()) println("Greetings adventurer, I have a quest for you! Do you accept it?")
 
@@ -54,7 +57,7 @@ class Town(var activeT: Boolean = true) {
                 }
             }
         }
-    }
+    }*/
 
     fun isActive(): Boolean {
         return activeT

@@ -1,3 +1,5 @@
+import kotlin.system.exitProcess
+
 class GameEngine {
 
     val town = Town()
@@ -13,9 +15,10 @@ class GameEngine {
 
             val container = ActionContainer()
 
-            container.addAction("test", this::printStuff)
+            container.addAction("test1", this::printStuff)
+            container.addAction("exit", this::exitGame)
 
-            /*if (dungeon.isActive()) {
+            if (dungeon.isActive()) {
                 val dungeonContainer = dungeon.actionC()
                 container.addAll(dungeonContainer)
             }
@@ -23,7 +26,7 @@ class GameEngine {
             if (town.isActive()) {
                 val townContainer = town.actionC()
                 container.addAll(townContainer)
-            }*/ //THIS WILL BE IMPLEMENTED SHORTLY, HOPEFULLY
+            } //THIS WILL BE IMPLEMENTED SHORTLY, HOPEFULLY
 
             val input: String? = readLine()
             if (input != null) {
@@ -45,5 +48,8 @@ class GameEngine {
     }
     fun printStuff() {
         println("HELLO M8 THIS IS A GENERAL TEST")
+    }
+    fun exitGame() {
+        exitProcess(0)
     }
 }

@@ -7,6 +7,9 @@ class ActionContainer {
     }
 
     fun addAll(other: ActionContainer) {
+
+        actions.putAll(other.actions)
+
         //Add all actions from other into this
     }
 
