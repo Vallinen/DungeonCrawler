@@ -32,8 +32,8 @@ class GameEngine {
                 container.addAll(townContainer)
             }
             val keys = container.actions.keys
-            for (key in keys){
-                print("$key ")
+            for (key in keys) {
+                print("'$key' ")
             }
             println()
             val input: String? = readLine()
@@ -44,6 +44,11 @@ class GameEngine {
     }
 
     private fun questStatus() {
+        if (quests.isActive()) {
+            println("You have a quest.")
+        } else {
+            println("You do not have a quest.")
+        }
         if (quests.complete) {
             println("Your quest is complete.")
         } else {
@@ -55,9 +60,11 @@ class GameEngine {
         town.flipper()
         dungeon.flipper()
     }
+
     fun printStuff() {
         println("HELLO M8 THIS IS A GENERAL TEST")
     }
+
     fun exitGame() {
         exitProcess(0)
     }

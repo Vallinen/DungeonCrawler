@@ -1,4 +1,4 @@
-class DialogueNode(var text: String, var children:  MutableMap<String, DialogueNode> = mutableMapOf()) {
+class DialogueNode(var text: String, var children:  MutableMap<String, DialogueNode> = mutableMapOf(), var sideEffect: () -> Unit = {}) {
 
 
 }

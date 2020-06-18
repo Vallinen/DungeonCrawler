@@ -9,6 +9,7 @@ class Dungeon(var activeD: Boolean = false) {
         val container = ActionContainer()
         container.addAction("test3", this::printStuff)
         container.addAction("search", this::search)
+        container.addAction("travel", gameEngine::travel)
 
         return container
 
@@ -17,10 +18,11 @@ class Dungeon(var activeD: Boolean = false) {
     fun search() {
         val roll: Int = Dice(6, 1).roll()
 
-        if (roll == 6)  {
+        if (roll == 6 && quests.isNotComplete()) {
             println("You found the key.")
             quests.completeFlipper()
-
+        } else {
+            println("You find nothing but dirt.")
         }
     }
 
