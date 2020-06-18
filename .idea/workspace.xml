@@ -20,24 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81563b12-5c25-47e3-9095-5b1a68d1f789" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DialogueNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DialogueTree.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DungeonCrawler/Dungeon$actionC$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DungeonCrawler/Dungeon$actionC$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DungeonCrawler/Dungeon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DungeonCrawler/Dungeon.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DungeonCrawler/GameEngine$runGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DungeonCrawler/GameEngine$runGame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DungeonCrawler/GameEngine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DungeonCrawler/GameEngine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DungeonCrawler/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DungeonCrawler/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DungeonCrawler/Number.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DungeonCrawler/Number.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DungeonCrawler/Quests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DungeonCrawler/Quests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DungeonCrawler/Town$actionC$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DungeonCrawler/Town$actionC$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DungeonCrawler/Town.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DungeonCrawler/Town.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dice.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dice.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dungeon.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dungeon.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Quests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Quests.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Town.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Town.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
