@@ -2,32 +2,31 @@ import kotlin.system.exitProcess
 
 class Dungeon(var activeD: Boolean = false) {
 
-    var gameEngine: GameEngine? = null
+    lateinit var gameEngine: GameEngine
+    lateinit var quests: Quests
 
     fun actionC(): ActionContainer {
         val container = ActionContainer()
-        container.addAction("test", this::printStuff)
+        container.addAction("test3", this::printStuff)
+        container.addAction("search", this::search)
+
         return container
 
     }
 
-    fun printStuff() {
-        println("HELLO M8 THIS IS A DUNGEON TEST")
+    fun search() {
+        val roll: Int = Dice(6, 1).roll()
+
+        if (roll == 6)  {
+            println("You found the key.")
+            quests.completeFlipper()
+
+        }
     }
 
-    fun action() {
 
-        println("YOU ARE IN THE DUNGEON")
-
-        while (activeD) { //TODO Figure out a system for dungeons, dicerolls ect...
-
-            val stringInput: String? = readLine()  // Read input
-
-            // Do something with input
-            if (stringInput == "exit") {
-                exitProcess(0)
-            }
-        }
+    fun printStuff() {
+        println("HELLO M8 THIS IS A DUNGEON TEST")
     }
 
     fun isActive(): Boolean {

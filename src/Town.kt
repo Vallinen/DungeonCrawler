@@ -1,63 +1,30 @@
-import kotlin.system.exitProcess
-
 class Town(var activeT: Boolean = true) {
 
-    var dungeon = Dungeon()
-
-    var gameEngine: GameEngine? = null
-
-    var quest = Quests()
-
+    lateinit var quests: Quests
+    lateinit var gameEngine: GameEngine
+    var dialogue: DialogueTree = DialogueTree(questConvo())
 
     fun actionC(): ActionContainer {
         val container = ActionContainer()
-        //container.addAction("travel", gameEngine.travel())
-
+        container.addAction("travel", gameEngine::travel)
         container.addAction("test2", this::printStuff)
+        container.addAction("talk", dialogue::flipper)
+        if(dialogue.isActive()) {
+            container.addAll(dialogue.actionC())
+        }
         return container
-
     }
 
     fun printStuff() {
         println("HELLO M8 THIS IS A TOWN TEST")
     }
 
-    /*fun action() {
-
-        if (quest.isNotActive()) println("Greetings adventurer, I have a quest for you! Do you accept it?")
-
-        while (activeT) {
-
-            val stringInput: String? = readLine()  // Read input
-
-            // Do something with input
-            if (stringInput == "exit") {
-                exitProcess(0)
-            }
-            if (stringInput == "no") {
-                println("Well then come back when you have some guts!")
-            }
-            if (quest.isNotActive() && (stringInput == "yes")) {
-                println("Good, then I need you to get to the dungeon and find my fathers old sword.")
-                quest.flipper()
-            } // TODO Set quest status to active, also remove this option when quest is active
-
-            if (stringInput == "leave") {
-                println("You leave town and head towards the dungeon.")
-
-                gameEngine?.travel()
-
-            } // TODO Create a Flip function for both Dungeon and Town active
-
-            if (quest.isActive() && (stringInput == "quest")) {
-                if (quest.isComplete()) {
-                    println("You found my fathers sword, I am forever in your debt.")
-                } else {
-                    println("You're not done yet!")
-                }
-            }
-        }
-    }*/
+    fun questConvo(): DialogueNode {
+        val yes = DialogueNode("Glorious! Head to the basement!")
+        val no = DialogueNode("Well fuck you then!")
+        val quest = DialogueNode("Yes, my key is gone! Can you help me find it?", mutableMapOf("Yes" to yes, "No" to no))
+        return DialogueNode("Greetings Adventurer", mutableMapOf("Quest" to quest))
+    }
 
     fun isActive(): Boolean {
         return activeT
@@ -68,3 +35,4 @@ class Town(var activeT: Boolean = true) {
 
     }
 }
+

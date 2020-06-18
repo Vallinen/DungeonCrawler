@@ -22,8 +22,13 @@ class Quests {
         return !activeQ
     }
 
-    fun flipper() {
+    fun activeFlipper() {
         activeQ = !activeQ
+
+    }
+
+    fun completeFlipper() {
+        complete = !complete
 
     }
 }

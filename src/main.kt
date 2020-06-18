@@ -22,7 +22,7 @@ fun main() { // Main menu
             startGame.runGame()
         }
         if (stringInput == "roll") {
-            val diceRoll = Dice(6, 1).roll()
+            val diceRoll = Dice(6, 3).roll()
             println("You rolled a: $diceRoll")
         }
     }
@@ -34,4 +34,9 @@ class Number(var number: Int) { // sample class, serves no real purpose
         println(this.number)
     }
 
-}
+} // TODO Ask for quest
+// Todo Travel back from dungeon to town
+// Todo return the key and complete the quest, if you have the key
+// Todo prevent failing the quest because you have 2 keys
+// Todo implement more than one room
+// Todo implement room specific actions

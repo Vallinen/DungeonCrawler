@@ -4,12 +4,15 @@ class GameEngine {
 
     val town = Town()
     val dungeon = Dungeon()
+    val quests = Quests()
 
 
     fun runGame() {  // starts the game, by default with Town as TRUE
+
         town.gameEngine = this
-
-
+        dungeon.quests = quests
+        town.quests = quests
+        dungeon.gameEngine = this
 
         while (true) {
 
@@ -17,6 +20,7 @@ class GameEngine {
 
             container.addAction("test1", this::printStuff)
             container.addAction("exit", this::exitGame)
+            container.addAction("check quest", this::questStatus)
 
             if (dungeon.isActive()) {
                 val dungeonContainer = dungeon.actionC()
@@ -26,19 +30,24 @@ class GameEngine {
             if (town.isActive()) {
                 val townContainer = town.actionC()
                 container.addAll(townContainer)
-            } //THIS WILL BE IMPLEMENTED SHORTLY, HOPEFULLY
-
+            }
+            val keys = container.actions.keys
+            for (key in keys){
+                print("$key ")
+            }
+            println()
             val input: String? = readLine()
             if (input != null) {
                 container.useAction(input)
             }
+        }
+    }
 
-            /*if (town.isActive()) {
-                town.action()
-            } else if (dungeon.isActive()) {
-                dungeon.action()
-            }*/
-
+    private fun questStatus() {
+        if (quests.complete) {
+            println("Your quest is complete.")
+        } else {
+            println("Your quest is not complete.")
         }
     }
 
