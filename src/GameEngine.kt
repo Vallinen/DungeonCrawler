@@ -5,6 +5,7 @@ class GameEngine {
     val town = Town()
     val dungeon = Dungeon()
     val quests = Quests()
+    val charCreator = CharacterCreator()
 
 
     fun runGame() {  // starts the game, by default with Town as TRUE
@@ -13,6 +14,9 @@ class GameEngine {
         dungeon.quests = quests
         town.quests = quests
         dungeon.gameEngine = this
+        charCreator.charCreator()
+        val charSheet = charCreator.charSheet
+        town.characterSheet = charSheet
 
         while (true) {
 

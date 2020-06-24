@@ -2,6 +2,7 @@ class Town(var activeT: Boolean = true) {
 
     lateinit var quests: Quests
     lateinit var gameEngine: GameEngine
+    lateinit var characterSheet: CharacterSheet
     var dialogue: DialogueTree = DialogueTree(questConvo())
 
     fun actionC(): ActionContainer {
@@ -16,7 +17,7 @@ class Town(var activeT: Boolean = true) {
     }
 
     fun printStuff() {
-        println("HELLO M8 THIS IS A TOWN TEST")
+        println("HELLO M8 THIS IS A TOWN TEST, you are a ${characterSheet.race} named ${characterSheet.name}! Did it work? ")
     }
 
     fun questConvo(): DialogueNode {
