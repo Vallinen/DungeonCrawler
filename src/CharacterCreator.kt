@@ -4,47 +4,49 @@ class CharacterCreator {
 
     fun charCreator(): CharacterSheet {
         println("Please name your character.")
-        val inputName: String? = readLine()
+        var inputName: String? = readLine()
         println("Are you sure that you want to name your character $inputName?")
         println("Y/N?")
-        val inputNameConfirm: String? = readLine()
+        var inputNameConfirm: String? = readLine()
         if (inputNameConfirm == "Y") {
-            val charName: String? = inputName
         } else {
-            charCreator()
+            GameEngine().runGame()
         }
         println("Please choose a race for your character.")
         println("You can choose between 'Human', 'Dwarf' and 'Elf', please type your choice.")
-        val inputRace: String? = readLine()
+        var inputRace: String? = readLine()
         if (inputRace == "Human") {
             println("Are you sure you want your character to be a Human?")
             println("Y/N?")
-            val inputRaceConfirm: String? = readLine()
-            if (inputNameConfirm == "Y") {
+            var inputRaceConfirm: String? = readLine()
+            if (inputRaceConfirm == "Y") {
                 println("You character is a $inputRace")
             } else {
-                charCreator()
+                GameEngine().runGame()
             }
         }
         if (inputRace == "Dwarf") {
             println("Are you sure you want your character to be a Dwarf?")
             println("Y/N?")
-            val inputRaceConfirm: String? = readLine()
-            if (inputNameConfirm == "Y") {
+            var inputRaceConfirm: String? = readLine()
+            if (inputRaceConfirm == "Y") {
                 println("You character is a $inputRace")
             } else {
-                charCreator()
+                GameEngine().runGame()
             }
         }
         if (inputRace == "Elf") {
             println("Are you sure you want your character to be an Elf?")
             println("Y/N?")
-            val inputRaceConfirm: String? = readLine()
-            if (inputNameConfirm == "Y") {
+            var inputRaceConfirm: String? = readLine()
+            if (inputRaceConfirm == "Y") {
                 println("You character is an $inputRace")
             } else {
-                charCreator()
+                GameEngine().runGame()
             }
+        } else {
+            println("That is not a valid race.")
+            GameEngine().runGame()
         }
 
         charSheet.name = inputName
