@@ -44,16 +44,17 @@ class CharacterCreator {
             } else {
                 GameEngine().runGame()
             }
-        } else {
-            println("That is not a valid race.")
-            GameEngine().runGame()
         }
-
+        if (inputRace != "Elf") {
+            if (inputRace != "Dwarf"){
+                if (inputRace != "Human"){
+                    println("That is not a valid race.")
+                    GameEngine().runGame()
+                }
+            }
+        }
         charSheet.name = inputName
         charSheet.race = inputRace
         return charSheet
-
-
     }
-
 }
