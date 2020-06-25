@@ -1,3 +1,5 @@
+import character.CharacterCreatedEvent
+
 class Printer : EventListener {
     override fun notify(event: Event) {
         when (event) {

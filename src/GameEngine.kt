@@ -1,29 +1,39 @@
+import character.CharacterCreatedEvent
+import character.CharacterCreator
+import dialogue.DialogueFactory
+import dialogue.DialogueTree
 import kotlin.system.exitProcess
 
 class GameEngine {
 
-    val town = Town()
+
     val dungeon = Dungeon()
     val quests = Quests()
     val charCreator = CharacterCreator()
 
+    private val town: Town
 
-    fun runGame() {  // starts the game, by default with Town as TRUE
-
+    init {
         val eventBus = EventBus()
         val printer = Printer()
 
         eventBus.subscribe(printer)
 
-        town.gameEngine = this
         dungeon.quests = quests
-        town.quests = quests
         dungeon.gameEngine = this
         charCreator.charCreator()
-        val charSheet = charCreator.charSheet
-        eventBus.sendEvent(CharacterCreatedEvent(charSheet))
-        town.characterSheet = charSheet
-        town.dialogue = DialogueTree(town.questConvo())
+        val characterSheet = charCreator.charSheet
+        eventBus.sendEvent(CharacterCreatedEvent(characterSheet))
+        val dialogueFactory = DialogueFactory()
+        val dialogueTree = DialogueTree()
+        val firstQuestConversation = dialogueFactory.firstQuestConversation(quests, dialogueTree, characterSheet)
+        dialogueTree.rootNode = firstQuestConversation
+        town = Town(gameEngine = this, characterSheet = characterSheet, quests = quests, dialogue = dialogueTree)
+    }
+
+
+    fun runGame() {  // starts the game, by default with Town as TRUE
+
 
         while (true) {
 

@@ -1,4 +1,8 @@
-class DialogueTree(val rootNode: DialogueNode) {
+package dialogue
+
+import ActionContainer
+
+class DialogueTree(var rootNode: DialogueNode = DialogueNode("")) {
 
     var active: Boolean = false
     var currentNode: DialogueNode = rootNode

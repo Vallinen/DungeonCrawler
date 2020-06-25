@@ -4,11 +4,6 @@ fun main() { // Main menu
 
     val n = Number(0)
 
-    val startGame = GameEngine()
-
-
-
-
     while (true) { //sample menu loop
         print("Enter text: ")
         val stringInput = readLine()
@@ -21,14 +16,11 @@ fun main() { // Main menu
             n.add()
         }
         if (stringInput == "start") { // redirects to class game engine
-            startGame.runGame()
+            GameEngine().runGame()
         }
         if (stringInput == "roll") {
             val diceRoll = Dice(6, 3).roll()
             println("You rolled a: $diceRoll")
-        }
-        if (stringInput == "new game") { // redirects to class game engine
-            startGame.runGame()
         }
     }
 }

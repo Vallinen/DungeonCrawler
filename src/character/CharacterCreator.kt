@@ -1,3 +1,7 @@
+package character
+
+import GameEngine
+
 class CharacterCreator {
 
     val charSheet = CharacterSheet()
