@@ -3,7 +3,7 @@ class Town(var activeT: Boolean = true) {
     lateinit var quests: Quests
     lateinit var gameEngine: GameEngine
     lateinit var characterSheet: CharacterSheet
-    var dialogue: DialogueTree = DialogueTree(questConvo())
+    lateinit var dialogue: DialogueTree
 
     fun actionC(): ActionContainer {
         val container = ActionContainer()
@@ -27,7 +27,7 @@ class Town(var activeT: Boolean = true) {
         })
         val no = DialogueNode("Well fuck you then!", sideEffect = {dialogue.flipper()})
         val quest = DialogueNode("Yes, my key is gone! Can you help me find it?", mutableMapOf("Yes" to yes, "No" to no))
-        return DialogueNode("Greetings Adventurer", mutableMapOf("Quest" to quest))
+        return DialogueNode("Greetings ${characterSheet.race}", mutableMapOf("Quest" to quest))
     }
 
     fun isActive(): Boolean {

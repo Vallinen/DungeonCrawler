@@ -1,0 +1,1 @@
+data class CharacterCreatedEvent(var sheet: CharacterSheet) : Event

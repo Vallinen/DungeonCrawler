@@ -10,13 +10,20 @@ class GameEngine {
 
     fun runGame() {  // starts the game, by default with Town as TRUE
 
+        val eventBus = EventBus()
+        val printer = Printer()
+
+        eventBus.subscribe(printer)
+
         town.gameEngine = this
         dungeon.quests = quests
         town.quests = quests
         dungeon.gameEngine = this
         charCreator.charCreator()
         val charSheet = charCreator.charSheet
+        eventBus.sendEvent(CharacterCreatedEvent(charSheet))
         town.characterSheet = charSheet
+        town.dialogue = DialogueTree(town.questConvo())
 
         while (true) {
 
