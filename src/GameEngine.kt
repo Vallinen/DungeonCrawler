@@ -21,8 +21,7 @@ class GameEngine {
 
         dungeon.quests = quests
         dungeon.gameEngine = this
-        charCreator.charCreator()
-        val characterSheet = charCreator.charSheet
+        val characterSheet = charCreator.charCreator()
         eventBus.sendEvent(CharacterCreatedEvent(characterSheet))
         val dialogueFactory = DialogueFactory()
         val dialogueTree = DialogueTree()

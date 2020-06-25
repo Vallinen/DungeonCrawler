@@ -1,64 +1,34 @@
 package character
 
-import GameEngine
-
 class CharacterCreator {
 
-    val charSheet = CharacterSheet()
+
+    val allowedRaces = listOf("Human", "Dwarf", "Elf")
 
     fun charCreator(): CharacterSheet {
-        println("Please name your character.")
-        var inputName: String? = readLine()
-        println("Are you sure that you want to name your character $inputName?")
-        println("Y/N?")
-        var inputNameConfirm: String? = readLine()
-        if (inputNameConfirm == "Y") {
-        } else {
-            GameEngine().runGame()
-        }
-        println("Please choose a race for your character.")
-        println("You can choose between 'Human', 'Dwarf' and 'Elf', please type your choice.")
-        var inputRace: String? = readLine()
-        if (inputRace == "Human") {
-            println("Are you sure you want your character to be a Human?")
-            println("Y/N?")
-            var inputRaceConfirm: String? = readLine()
-            if (inputRaceConfirm == "Y") {
-                println("You character is a $inputRace")
-            } else {
-                GameEngine().runGame()
+        val inputName = enterParameter("character name")
+        val inputRace = enterParameter("character race", allowedRaces)
+
+        return CharacterSheet(inputName, inputRace)
+    }
+
+    private fun enterParameter(parameter: String, options: List<String> = listOf()): String {
+
+        while (true) {
+            println("Please enter your $parameter.")
+            if (options.isNotEmpty()){
+                println("Your options are $options.")
             }
-        }
-        if (inputRace == "Dwarf") {
-            println("Are you sure you want your character to be a Dwarf?")
-            println("Y/N?")
-            var inputRaceConfirm: String? = readLine()
-            if (inputRaceConfirm == "Y") {
-                println("You character is a $inputRace")
-            } else {
-                GameEngine().runGame()
-            }
-        }
-        if (inputRace == "Elf") {
-            println("Are you sure you want your character to be an Elf?")
-            println("Y/N?")
-            var inputRaceConfirm: String? = readLine()
-            if (inputRaceConfirm == "Y") {
-                println("You character is an $inputRace")
-            } else {
-                GameEngine().runGame()
-            }
-        }
-        if (inputRace != "Elf") {
-            if (inputRace != "Dwarf"){
-                if (inputRace != "Human"){
-                    println("That is not a valid race.")
-                    GameEngine().runGame()
+            var inputName: String? = readLine()
+            if (!options.isNotEmpty() || options.contains(inputName)) {
+                println("Are you sure that you want $parameter to be $inputName?")
+                println("Yes/No?")
+                var inputNameConfirm1 = readLine().toString()
+                if (inputNameConfirm1[0] == 'Y') {
+                    return inputName.toString()
                 }
             }
+
         }
-        charSheet.name = inputName
-        charSheet.race = inputRace
-        return charSheet
     }
 }
