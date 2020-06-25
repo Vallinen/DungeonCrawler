@@ -16,7 +16,7 @@ class CharacterCreator {
 
         while (true) {
             println("Please enter your $parameter.")
-            if (options.isNotEmpty()){
+            if (options.isNotEmpty()) {
                 println("Your options are $options.")
             }
             var inputName: String? = readLine()
@@ -28,7 +28,6 @@ class CharacterCreator {
                     return inputName.toString()
                 }
             }
-
         }
     }
 }
