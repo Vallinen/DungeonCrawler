@@ -1,24 +1,30 @@
-class ActionContainer {
+class ActionContainer : EventListener {
+
 
     val actions: MutableMap<String, () -> Unit> = mutableMapOf()
 
     fun addAction(key: String, action: () -> Unit) {
         actions.put(key, action)
+
     }
 
     fun addAll(other: ActionContainer) {
 
         actions.putAll(other.actions)
 
-        //Add all actions from other into this
     }
 
-    fun useAction(key: String)   {
+    fun useAction(key: String) {
 
         actions.get(key)?.invoke()
+        actions.clear()
 
+    }
 
-        //Trigger action in here
-        /*throw RuntimeException("IMPLEMENT ME BEFORE USING ME")*/
+    override fun notify(event: Event) {
+        when (event) {
+            is ActionEvent -> addAction(event.key, event.action)
+
+        }
     }
 }

@@ -2,9 +2,9 @@ class Dungeon(var active: Boolean = false, var quests: Quests, var eventBus: Eve
 
     override fun actionC(): ActionContainer {
         val container = ActionContainer()
-        container.addAction("test3", this::printStuff)
-        container.addAction("search", this::search)
-        container.addAction("travel", {eventBus.sendEvent(TravelEvent("dungeon", "town"))})
+        eventBus.sendEvent(ActionEvent("test3", this::printStuff))
+        eventBus.sendEvent(ActionEvent("search", this::search))
+        eventBus.sendEvent(ActionEvent("travel", {eventBus.sendEvent(TravelEvent("dungeon", "town"))}))
 
         return container
 

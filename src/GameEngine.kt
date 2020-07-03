@@ -14,15 +14,14 @@ class GameEngine : EventListener {
     private val quests: Quests
     private val locations: Map<String, Location>
     private val actionLocations: List<ActionLocation>
+    private val actionContainer: ActionContainer
+    private val eventBus: EventBus = EventBus()
 
     init {
-        val eventBus = EventBus()
         val printer = Printer()
 
         quests = Quests()
 
-        eventBus.subscribe(printer)
-        eventBus.subscribe(this)
 
         val characterSheet = charCreator.charCreator()
         eventBus.sendEvent(CharacterCreatedEvent(characterSheet))
@@ -34,6 +33,11 @@ class GameEngine : EventListener {
         dungeon = Dungeon(quests = quests, eventBus = eventBus)
         locations = mapOf("town" to town, "dungeon" to dungeon)
         actionLocations = listOf(town, dungeon)
+        actionContainer = ActionContainer()
+
+        eventBus.subscribe(printer)
+        eventBus.subscribe(this)
+        eventBus.subscribe(actionContainer)
     }
 
     override fun notify(event: Event) {
@@ -47,26 +51,24 @@ class GameEngine : EventListener {
 
         while (true) {
 
-            val container = ActionContainer()
-
-            container.addAction("test1", this::printStuff)
-            container.addAction("exit", this::exitGame)
-            container.addAction("check quest", this::questStatus)
+            eventBus.sendEvent(ActionEvent("test1", this::printStuff))
+            eventBus.sendEvent(ActionEvent("exit", this::exitGame))
+            eventBus.sendEvent(ActionEvent("check quest", this::questStatus))
 
             for (actionLocation in actionLocations) {
                 if (actionLocation.isActive()) {
-                    container.addAll(actionLocation.actionC())
+                    actionLocation.actionC()
                 }
             }
 
-            val keys = container.actions.keys
+            val keys = actionContainer.actions.keys
             for (key in keys) {
                 print("'$key' ")
             }
             println()
             val input: String? = readLine()
             if (input != null) {
-                container.useAction(input)
+                actionContainer.useAction(input)
             }
         }
     }
