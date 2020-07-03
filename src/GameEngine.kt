@@ -4,7 +4,7 @@ import dialogue.DialogueFactory
 import dialogue.DialogueTree
 import kotlin.system.exitProcess
 
-class GameEngine {
+class GameEngine : EventListener {
 
 
     val charCreator = CharacterCreator()
@@ -22,6 +22,7 @@ class GameEngine {
         quests = Quests()
 
         eventBus.subscribe(printer)
+        eventBus.subscribe(this)
 
         val characterSheet = charCreator.charCreator()
         eventBus.sendEvent(CharacterCreatedEvent(characterSheet))
@@ -29,12 +30,17 @@ class GameEngine {
         val dialogueTree = DialogueTree()
         val firstQuestConversation = dialogueFactory.firstQuestConversation(quests, dialogueTree, characterSheet)
         dialogueTree.rootNode = firstQuestConversation
-        town = Town(gameEngine = this, characterSheet = characterSheet, quests = quests, dialogue = dialogueTree)
-        dungeon = Dungeon(gameEngine = this, quests = quests)
+        town = Town(eventBus = eventBus, characterSheet = characterSheet, quests = quests, dialogue = dialogueTree)
+        dungeon = Dungeon(quests = quests, eventBus = eventBus)
         locations = mapOf("town" to town, "dungeon" to dungeon)
         actionLocations = listOf(town, dungeon)
     }
 
+    override fun notify(event: Event) {
+        when (event) {
+            is TravelEvent -> travel(event)
+        }
+    }
 
     fun runGame() {  // starts the game, by default with Town as TRUE
 

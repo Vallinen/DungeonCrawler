@@ -36,5 +36,4 @@ class Number(var number: Int) { // sample class, serves no real purpose
 // Todo implement more than one room
 // Todo implement room specific actions
 // Todo Actions as events
-// Todo Travel as event
 // Todo Quest as event

@@ -1,10 +1,10 @@
-class Dungeon(var active: Boolean = false, var gameEngine: GameEngine, var quests: Quests) : Location, ActionLocation {
+class Dungeon(var active: Boolean = false, var quests: Quests, var eventBus: EventBus) : Location, ActionLocation {
 
     override fun actionC(): ActionContainer {
         val container = ActionContainer()
         container.addAction("test3", this::printStuff)
         container.addAction("search", this::search)
-        container.addAction("travel", {gameEngine.travel(TravelEvent("dungeon", "town"))})
+        container.addAction("travel", {eventBus.sendEvent(TravelEvent("dungeon", "town"))})
 
         return container
 
@@ -34,8 +34,5 @@ class Dungeon(var active: Boolean = false, var gameEngine: GameEngine, var quest
         return active
     }
 
-    fun flipper() {
-        active = !active
-    }
 }
 
