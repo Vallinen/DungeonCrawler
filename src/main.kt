@@ -35,5 +35,4 @@ class Number(var number: Int) { // sample class, serves no real purpose
 // Todo return the key and complete the quest, if you have the key
 // Todo implement more than one room
 // Todo implement room specific actions
-// Todo Actions as events
 // Todo Quest as event

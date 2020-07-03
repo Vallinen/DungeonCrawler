@@ -22,7 +22,7 @@ class DialogueTree(var rootNode: DialogueNode = DialogueNode(""), val eventBus: 
     fun actionC(): ActionContainer {
         val container = ActionContainer()
         val dialogueOptions = currentNode.children.keys
-        println(currentNode.text)
+        eventBus.sendEvent(DialogueEvent(currentNode))
         currentNode.sideEffect.invoke()
         for (option in dialogueOptions) {
             eventBus.sendEvent(ActionEvent(option, { currentNode = currentNode.children.get(option)!! }))
