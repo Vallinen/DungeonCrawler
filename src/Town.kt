@@ -1,4 +1,5 @@
 import character.CharacterSheet
+import dialogue.DialogueInitialisationEvent
 import dialogue.DialogueTree
 import npc.NpcManager
 
@@ -10,11 +11,10 @@ class Town(var active: Boolean = true, var eventBus: EventBus, var characterShee
         eventBus.sendEvent(ActionEvent("test2", this::printStuff))
         eventBus.sendEvent(ActionEvent("talk", dialogue::flipper))
 
-        if (dialogue.isActive()) {
-            container.addAll(dialogue.actionC())
-        }
+        npcManager.dialogueTree.ifPresent({tree -> tree.actionC()})
         for (name in npcManager.npcNames()) {
             val key = "talk to $name"
+            eventBus.sendEvent(ActionEvent(key, { eventBus.sendEvent(DialogueInitialisationEvent(name)) }))
         }
         return container
     }

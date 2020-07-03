@@ -31,7 +31,9 @@ class Number(var number: Int) { // sample class, serves no real purpose
         println(this.number)
     }
 }
-
+//Todo NPC MANAGER --> Create dialogue exit event
+// Todo Create RPG rules system for combat
+// Todo Create Quickstart option
 // Todo return the key and complete the quest, if you have the key
 // Todo implement more than one room
 // Todo implement room specific actions

@@ -21,6 +21,7 @@ class GameEngine : EventListener {
     private val eventBus: EventBus = EventBus()
     private val npcFactory: NpcFactory = NpcFactory()
     private val npcManager: NpcManager = NpcManager()
+    private val gameState: GameState = GameState(eventBus)
 
     init {
         val printer = Printer()
@@ -44,6 +45,7 @@ class GameEngine : EventListener {
         eventBus.subscribe(this)
         eventBus.subscribe(actionContainer)
         eventBus.subscribe(npcManager)
+        eventBus.subscribe(gameState)
 
         eventBus.sendEvent(NpcCreationEvent(npcFactory.createBarkeep(dialogueTree)))
     }
