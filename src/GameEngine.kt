@@ -26,7 +26,7 @@ class GameEngine : EventListener {
         val characterSheet = charCreator.charCreator()
         eventBus.sendEvent(CharacterCreatedEvent(characterSheet))
         val dialogueFactory = DialogueFactory()
-        val dialogueTree = DialogueTree()
+        val dialogueTree = DialogueTree(eventBus = eventBus)
         val firstQuestConversation = dialogueFactory.firstQuestConversation(quests, dialogueTree, characterSheet)
         dialogueTree.rootNode = firstQuestConversation
         town = Town(eventBus = eventBus, characterSheet = characterSheet, quests = quests, dialogue = dialogueTree)

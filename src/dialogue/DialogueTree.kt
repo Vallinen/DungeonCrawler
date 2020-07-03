@@ -1,8 +1,10 @@
 package dialogue
 
 import ActionContainer
+import ActionEvent
+import EventBus
 
-class DialogueTree(var rootNode: DialogueNode = DialogueNode("")) {
+class DialogueTree(var rootNode: DialogueNode = DialogueNode(""), val eventBus: EventBus) {
 
     var active: Boolean = false
     var currentNode: DialogueNode = rootNode
@@ -23,7 +25,7 @@ class DialogueTree(var rootNode: DialogueNode = DialogueNode("")) {
         println(currentNode.text)
         currentNode.sideEffect.invoke()
         for (option in dialogueOptions) {
-            container.addAction(option, { currentNode = currentNode.children.get(option)!! })
+            eventBus.sendEvent(ActionEvent(option, { currentNode = currentNode.children.get(option)!! }))
         }
         return container
     }
