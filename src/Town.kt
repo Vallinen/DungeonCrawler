@@ -1,12 +1,11 @@
 import character.CharacterSheet
-import dialogue.DialogueNode
 import dialogue.DialogueTree
 
-class Town(var activeT: Boolean = true, var gameEngine: GameEngine, var characterSheet: CharacterSheet, var quests: Quests, var dialogue: DialogueTree) {
+class Town(var active: Boolean = true, var gameEngine: GameEngine, var characterSheet: CharacterSheet, var quests: Quests, var dialogue: DialogueTree): Location, ActionLocation {
 
-    fun actionC(): ActionContainer {
+    override fun actionC(): ActionContainer {
         val container = ActionContainer()
-        container.addAction("travel", gameEngine::travel)
+        container.addAction("travel", {gameEngine.travel(TravelEvent("town", "dungeon"))})
         container.addAction("test2", this::printStuff)
         container.addAction("talk", dialogue::flipper)
         if(dialogue.isActive()) {
@@ -15,18 +14,20 @@ class Town(var activeT: Boolean = true, var gameEngine: GameEngine, var characte
         return container
     }
 
+    override fun locationActive(active: Boolean) {
+        this.active = active
+    }
+
     fun printStuff() {
         println("HELLO M8 THIS IS A TOWN TEST, you are a ${characterSheet.race} named ${characterSheet.name}! Did it work? ")
     }
 
-
-
-    fun isActive(): Boolean {
-        return activeT
+    override fun isActive(): Boolean {
+        return active
     }
 
     fun flipper() {
-        activeT = !activeT
+        active = !active
 
     }
 }

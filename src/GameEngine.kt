@@ -12,6 +12,8 @@ class GameEngine {
     private val town: Town
     private val dungeon: Dungeon
     private val quests: Quests
+    private val locations: Map<String, Location>
+    private val actionLocations: List<ActionLocation>
 
     init {
         val eventBus = EventBus()
@@ -21,7 +23,6 @@ class GameEngine {
 
         eventBus.subscribe(printer)
 
-
         val characterSheet = charCreator.charCreator()
         eventBus.sendEvent(CharacterCreatedEvent(characterSheet))
         val dialogueFactory = DialogueFactory()
@@ -30,6 +31,8 @@ class GameEngine {
         dialogueTree.rootNode = firstQuestConversation
         town = Town(gameEngine = this, characterSheet = characterSheet, quests = quests, dialogue = dialogueTree)
         dungeon = Dungeon(gameEngine = this, quests = quests)
+        locations = mapOf("town" to town, "dungeon" to dungeon)
+        actionLocations = listOf(town, dungeon)
     }
 
 
@@ -44,15 +47,12 @@ class GameEngine {
             container.addAction("exit", this::exitGame)
             container.addAction("check quest", this::questStatus)
 
-            if (dungeon.isActive()) {
-                val dungeonContainer = dungeon.actionC()
-                container.addAll(dungeonContainer)
+            for (actionLocation in actionLocations) {
+                if (actionLocation.isActive()) {
+                    container.addAll(actionLocation.actionC())
+                }
             }
 
-            if (town.isActive()) {
-                val townContainer = town.actionC()
-                container.addAll(townContainer)
-            }
             val keys = container.actions.keys
             for (key in keys) {
                 print("'$key' ")
@@ -78,9 +78,9 @@ class GameEngine {
         }
     }
 
-    fun travel() { //function that travels from town to dungeon and vice versa
-        town.flipper()
-        dungeon.flipper()
+    fun travel(travelEvent: TravelEvent) { //function that travels from town to dungeon and vice versa
+        locations.get(travelEvent.origin)?.locationActive(false)
+        locations.get(travelEvent.destination)?.locationActive(true)
     }
 
     fun printStuff() {

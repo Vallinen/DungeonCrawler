@@ -1,16 +1,17 @@
-import character.CharacterSheet
-import kotlin.system.exitProcess
+class Dungeon(var active: Boolean = false, var gameEngine: GameEngine, var quests: Quests) : Location, ActionLocation {
 
-class Dungeon(var activeD: Boolean = false, var gameEngine: GameEngine, var quests: Quests) {
-
-    fun actionC(): ActionContainer {
+    override fun actionC(): ActionContainer {
         val container = ActionContainer()
         container.addAction("test3", this::printStuff)
         container.addAction("search", this::search)
-        container.addAction("travel", gameEngine::travel)
+        container.addAction("travel", {gameEngine.travel(TravelEvent("dungeon", "town"))})
 
         return container
 
+    }
+
+    override fun locationActive(active: Boolean) {
+        this.active = active
     }
 
     fun search() {
@@ -29,12 +30,12 @@ class Dungeon(var activeD: Boolean = false, var gameEngine: GameEngine, var ques
         println("HELLO M8 THIS IS A DUNGEON TEST")
     }
 
-    fun isActive(): Boolean {
-        return activeD
+    override fun isActive(): Boolean {
+        return active
     }
 
     fun flipper() {
-        activeD = !activeD
+        active = !active
     }
 }
 
