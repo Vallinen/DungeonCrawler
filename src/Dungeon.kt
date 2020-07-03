@@ -1,9 +1,7 @@
+import character.CharacterSheet
 import kotlin.system.exitProcess
 
-class Dungeon(var activeD: Boolean = false) {
-
-    lateinit var gameEngine: GameEngine
-    lateinit var quests: Quests
+class Dungeon(var activeD: Boolean = false, var gameEngine: GameEngine, var quests: Quests) {
 
     fun actionC(): ActionContainer {
         val container = ActionContainer()

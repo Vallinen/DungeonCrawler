@@ -7,20 +7,21 @@ import kotlin.system.exitProcess
 class GameEngine {
 
 
-    val dungeon = Dungeon()
-    val quests = Quests()
     val charCreator = CharacterCreator()
 
     private val town: Town
+    private val dungeon: Dungeon
+    private val quests: Quests
 
     init {
         val eventBus = EventBus()
         val printer = Printer()
 
+        quests = Quests()
+
         eventBus.subscribe(printer)
 
-        dungeon.quests = quests
-        dungeon.gameEngine = this
+
         val characterSheet = charCreator.charCreator()
         eventBus.sendEvent(CharacterCreatedEvent(characterSheet))
         val dialogueFactory = DialogueFactory()
@@ -28,6 +29,7 @@ class GameEngine {
         val firstQuestConversation = dialogueFactory.firstQuestConversation(quests, dialogueTree, characterSheet)
         dialogueTree.rootNode = firstQuestConversation
         town = Town(gameEngine = this, characterSheet = characterSheet, quests = quests, dialogue = dialogueTree)
+        dungeon = Dungeon(gameEngine = this, quests = quests)
     }
 
 

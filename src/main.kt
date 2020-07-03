@@ -31,12 +31,10 @@ class Number(var number: Int) { // sample class, serves no real purpose
         println(this.number)
     }
 }
-// Todo refactor dungeon, see town for reference
+
 // Todo return the key and complete the quest, if you have the key
 // Todo implement more than one room
 // Todo implement room specific actions
 // Todo Actions as events
 // Todo Travel as event
 // Todo Quest as event
-
-// Todo sonarlint plugin
