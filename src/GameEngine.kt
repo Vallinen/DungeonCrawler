@@ -2,6 +2,9 @@ import character.CharacterCreatedEvent
 import character.CharacterCreator
 import dialogue.DialogueFactory
 import dialogue.DialogueTree
+import npc.NpcCreationEvent
+import npc.NpcFactory
+import npc.NpcManager
 import kotlin.system.exitProcess
 
 class GameEngine : EventListener {
@@ -16,6 +19,8 @@ class GameEngine : EventListener {
     private val actionLocations: List<ActionLocation>
     private val actionContainer: ActionContainer
     private val eventBus: EventBus = EventBus()
+    private val npcFactory: NpcFactory = NpcFactory()
+    private val npcManager: NpcManager = NpcManager()
 
     init {
         val printer = Printer()
@@ -29,7 +34,7 @@ class GameEngine : EventListener {
         val dialogueTree = DialogueTree(eventBus = eventBus)
         val firstQuestConversation = dialogueFactory.firstQuestConversation(quests, dialogueTree, characterSheet)
         dialogueTree.rootNode = firstQuestConversation
-        town = Town(eventBus = eventBus, characterSheet = characterSheet, quests = quests, dialogue = dialogueTree)
+        town = Town(eventBus = eventBus, characterSheet = characterSheet, npcManager = npcManager, dialogue = dialogueTree)
         dungeon = Dungeon(quests = quests, eventBus = eventBus)
         locations = mapOf("town" to town, "dungeon" to dungeon)
         actionLocations = listOf(town, dungeon)
@@ -38,6 +43,9 @@ class GameEngine : EventListener {
         eventBus.subscribe(printer)
         eventBus.subscribe(this)
         eventBus.subscribe(actionContainer)
+        eventBus.subscribe(npcManager)
+
+        eventBus.sendEvent(NpcCreationEvent(npcFactory.createBarkeep(dialogueTree)))
     }
 
     override fun notify(event: Event) {

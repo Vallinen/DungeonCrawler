@@ -1,7 +1,8 @@
 import character.CharacterSheet
 import dialogue.DialogueTree
+import npc.NpcManager
 
-class Town(var active: Boolean = true, var eventBus: EventBus, var characterSheet: CharacterSheet, var quests: Quests, var dialogue: DialogueTree) : Location, ActionLocation {
+class Town(var active: Boolean = true, var eventBus: EventBus, var characterSheet: CharacterSheet, var npcManager: NpcManager, var dialogue: DialogueTree) : Location, ActionLocation {
 
     override fun actionC(): ActionContainer {
         val container = ActionContainer()
@@ -11,6 +12,9 @@ class Town(var active: Boolean = true, var eventBus: EventBus, var characterShee
 
         if (dialogue.isActive()) {
             container.addAll(dialogue.actionC())
+        }
+        for (name in npcManager.npcNames()) {
+            val key = "talk to $name"
         }
         return container
     }
