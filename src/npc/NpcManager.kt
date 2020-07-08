@@ -1,6 +1,6 @@
 package npc
 
-import DialogueStateEvent
+import dialogue.DialogueStateEvent
 import Event
 import EventListener
 import dialogue.DialogueTree

@@ -22,6 +22,9 @@ fun main() { // Main menu
             val diceRoll = Dice(6, 3).roll()
             println("You rolled a: $diceRoll")
         }
+        if (stringInput == "qstart") {
+
+        }
     }
 }
 
@@ -31,7 +34,7 @@ class Number(var number: Int) { // sample class, serves no real purpose
         println(this.number)
     }
 }
-//Todo NPC MANAGER --> Create dialogue exit event
+// Todo NPC MANAGER --> Create dialogue exit event
 // Todo Create RPG rules system for combat
 // Todo Create Quickstart option
 // Todo return the key and complete the quest, if you have the key

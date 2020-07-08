@@ -1,4 +1,5 @@
 import dialogue.DialogueInitialisationEvent
+import dialogue.DialogueStateEvent
 import npc.NpcFactory
 
 class GameState(val eventBus: EventBus) :EventListener {
