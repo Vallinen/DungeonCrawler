@@ -7,6 +7,5 @@ class Npc(val name : String, val dialogueMap: MutableMap<String, DialogueTree> =
     fun activateDialogue(dialogue : String){
         dialogueMap.get(dialogue)?.flipper()
 
-
     }
 }

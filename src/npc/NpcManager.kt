@@ -3,6 +3,7 @@ package npc
 import dialogue.DialogueStateEvent
 import Event
 import EventListener
+import dialogue.DialogueExitEvent
 import dialogue.DialogueTree
 import java.util.*
 
@@ -19,6 +20,7 @@ class NpcManager : EventListener {
         when (event) {
             is NpcCreationEvent -> npcMap.put(event.npc.name, event.npc)
             is DialogueStateEvent -> dialogueHandler(event)
+            is DialogueExitEvent -> dialogueExitHandler()
         }
     }
 
@@ -29,7 +31,7 @@ class NpcManager : EventListener {
         dialogueTree = Optional.ofNullable(tree)
     }
 
-    private fun dialogueExitHandler(){ //Todo insert event
+    private fun dialogueExitHandler(){
         dialogueTree.ifPresent({tree -> tree.flipper()})
         dialogueTree = Optional.empty()
 
