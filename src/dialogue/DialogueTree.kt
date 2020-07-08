@@ -21,6 +21,7 @@ class DialogueTree(var rootNode: DialogueNode = DialogueNode(""), val eventBus: 
 
     fun actionC(): ActionContainer {
         val container = ActionContainer()
+        eventBus.sendEvent(ActionEvent("stop talking", {eventBus.sendEvent(DialogueExitEvent())}))
         val dialogueOptions = currentNode.children.keys
         eventBus.sendEvent(DialogueEvent(currentNode))
         currentNode.sideEffect.invoke()

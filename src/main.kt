@@ -21,7 +21,6 @@ fun main() { // Main menu
 }
 
 
-// Todo NPC MANAGER --> Create dialogue exit event
 // Todo Create RPG rules system for combat
 // Todo return the key and complete the quest, if you have the key
 // Todo implement more than one room
